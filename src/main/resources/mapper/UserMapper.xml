@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <select id="getUser" parameterType="com.example.demo.dto.UserEntity" resultType="com.example.demo.dto.UserEntity">
+        select
+        user_id userId,
+        user_name userName,
+        password,
+        phone,
+        id_card idCard
+        from user
+        <where>
+            <if test="userId != null and userId != ''">
+                user_id = #{userId}
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName}
+            </if>
+        </where>
+    </select>
+    <insert id="saveUser" parameterType="com.example.demo.dto.UserEntity">
+        insert into user(
+        user_id,
+        user_name,
+        password,
+        phone,
+        id_card
+        )
+        values(
+         #{userId},
+         #{userName},
+         #{password},
+         #{phone},
+         #{idCard}
+        )
+    </insert>
+</mapper>
