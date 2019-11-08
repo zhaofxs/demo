@@ -2,11 +2,9 @@ server:
   port: 8080
 
 spring:
-  datasource:
-    url: jdbc:h2:~/test
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: sa
+  #指定profiles
+  profiles:
+    active: dev
   #    schema: classpath:db/schema.sql
   #    data: classpath:db/data.sql
   jpa:
@@ -22,3 +20,31 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.example.demo.dto
+
+---
+##开发环境配置
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+---
+#测试环境配置
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+---
+#正式环境配置
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
